@@ -42,8 +42,7 @@ events.on("buidling", (e, project) => {
     if (project.secrets.DOCKER_USER) {
         docker.env.DOCKER_USER = project.secrets.DOCKER_USER
         docker.env.DOCKER_PASS = project.secrets.DOCKER_PASS
-        docker.env.DOCKER_REGISTRY = "https://index.docker.io/v1"
-        docker.tasks.push("docker login -u $DOCKER_USER -p $DOCKER_PASS $DOCKER_REGISTRY")
+        docker.tasks.push("docker login -u $DOCKER_USER -p $DOCKER_PASS")
         docker.tasks.push("docker tag uuid xvier/uuid")
         docker.tasks.push("docker push xvier/uuid")
     }else{
