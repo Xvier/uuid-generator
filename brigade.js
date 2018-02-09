@@ -28,14 +28,27 @@ events.on("push", function(e, project) {
 events.on("build", () => {
     console.log("fired 'next' event")
 
-    var build = new Job("build-runner")
+    var driver = project.secrets.DOCKER_DRIVER || "overlay"
 
-    build.image = "python:3"
-  
-    build.task = [
-        "echo Hello"
-    ]
-  
-    build.run()
+
+    const docker = new Job("dind", "docker:stable-dind")
+
+    docker.env.DOCKER_USER = project.secrets.DOCKER_USER
+    docker.env.DOCKER_PASS = project.secrets.DOCKER_PASS
+    
+    docker.privileged = true;
+    docker.env = {
+      DOCKER_DRIVER: driver
+    }
+    docker.tasks = [
+      "dockerd-entrypoint.sh &",
+      "sleep 20",
+      "cd /src",
+      "docker build -t xvier/uuid:latest .",
+      "docker login -u $DOCKER_USER -p $DOCKER_PASS",
+      "docker push xvier/uuid:latest"
+    ];
+    
+    docker.run()
 
   })
