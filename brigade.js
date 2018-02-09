@@ -17,38 +17,5 @@ events.on("push", function(e, project) {
 
   // We're done configuring, so we run the job
   node.run()
-//   .then(()=>{
-// //     events.emit("build", e, project)
-// //    })
 
- 
 })
-
-
-// events.on("build", () => {
-//     console.log("fired 'next' event")
-
-//     var driver = project.secrets.DOCKER_DRIVER || "overlay"
-
-
-//     const docker = new Job("dind", "docker:stable-dind")
-
-//     docker.env.DOCKER_USER = project.secrets.DOCKER_USER
-//     docker.env.DOCKER_PASS = project.secrets.DOCKER_PASS
-
-//     docker.privileged = true;
-//     docker.env = {
-//       DOCKER_DRIVER: driver
-//     }
-//     docker.tasks = [
-//       "dockerd-entrypoint.sh &",
-//       "sleep 20",
-//       "cd /src",
-//       "docker build -t xvier/uuid:latest .",
-//       "docker login -u $DOCKER_USER -p $DOCKER_PASS",
-//       "docker push xvier/uuid:latest"
-//     ];
-    
-//     docker.run()
-
-//   })
