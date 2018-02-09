@@ -27,7 +27,6 @@ events.on("buidling", (e, project) => {
 
     const docker = new Job("dind", "docker:stable-dind")
 
-   
 
     docker.privileged = true;
     docker.env = {
