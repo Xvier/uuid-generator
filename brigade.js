@@ -19,4 +19,10 @@ events.on("push", function(e, project) {
 
   // We're done configuring, so we run the job
   node.run()
+
+  var build = new Job("build-runner")
+
+  build.image = "python:3"
+
+  build.run()
 })
