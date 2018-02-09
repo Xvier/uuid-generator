@@ -32,4 +32,6 @@ events.on("buidling", (e, project) => {
     build.task = [
         "ls"
     ]
+
+    build.run()
   })
