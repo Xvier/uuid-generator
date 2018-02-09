@@ -36,7 +36,7 @@ events.on("buidling", (e, project) => {
       "dockerd-entrypoint.sh &",
       "sleep 20",
       "cd /src",
-      "docker build -t uuid:latest .",
+      "docker build -t uuid .",
     ];
 
     if (project.secrets.DOCKER_USER) {
@@ -44,7 +44,7 @@ events.on("buidling", (e, project) => {
         docker.env.DOCKER_PASS = project.secrets.DOCKER_PASS
         docker.env.DOCKER_REGISTRY = "registry.hub.docker.com"
         docker.tasks.push("docker login -u $DOCKER_USER -p $DOCKER_PASS $DOCKER_REGISTRY")
-        docker.tasks.push("docker tag uuid xvier/uuid:latest")
+        docker.tasks.push("docker tag uuid xvier/uuid")
         docker.tasks.push("docker push xvier/uuid:latest")
     }else{
         docker.task.push("ls")
