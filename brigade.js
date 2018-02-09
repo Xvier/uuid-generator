@@ -61,4 +61,6 @@ events.on("buidling", (e, project) => {
     deploy.task = [
         "kubectl get pods"
     ]
+
+    deploy.run()
   })
