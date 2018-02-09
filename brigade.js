@@ -16,23 +16,13 @@ events.on("push", function(e, project) {
   ]
 
   // We're done configuring, so we run the job
-   node.run().then(()=>{
-    events.emit("build", e, project)
-   })
+  node.run()
+//   .then(()=>{
+// //     events.emit("build", e, project)
+// //    })
 
  
 })
-
-events.on("build", function(e, project) {
-    console.log("received push for commit " + e.commit)
-  
-    const docker = new Job("dind", "docker:stable-dind")
-   
-    docker.tasks= [
-        "ls"
-    ]
-  })
-
 
 
 // events.on("build", () => {
