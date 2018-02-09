@@ -24,4 +24,12 @@ events.on("push", function(e, project) {
 
 events.on("buidling", () => {
     console.log("fired 'next' event")
+
+    var build = new Job("build-runner")
+
+    build.image= "python:3"
+
+    build.task = [
+        "ls"
+    ]
   })
