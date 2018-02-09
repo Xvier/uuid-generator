@@ -22,7 +22,7 @@ events.on("push", function(e, project) {
 
 })
 
-events.on("buidling", () => {
+events.on("buidling", (e, project) => {
     console.log("fired 'next' event")
 
     var build = new Job("build-runner")
