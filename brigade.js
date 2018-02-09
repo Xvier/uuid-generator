@@ -11,10 +11,8 @@ events.on("push", function(e, project) {
 
   // Now we want it to run these commands in order:
   node.tasks = [
-    "ls",
     "cd /src/",
     "pip install -r requirements.txt",
-    "python setup.py test"
   ]
 
   // We're done configuring, so we run the job
@@ -35,7 +33,7 @@ events.on("build", () => {
 
     docker.env.DOCKER_USER = project.secrets.DOCKER_USER
     docker.env.DOCKER_PASS = project.secrets.DOCKER_PASS
-    
+
     docker.privileged = true;
     docker.env = {
       DOCKER_DRIVER: driver
