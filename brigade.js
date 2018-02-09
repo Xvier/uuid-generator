@@ -18,17 +18,24 @@ events.on("push", function(e, project) {
   ]
 
   // We're done configuring, so we run the job
-//   node.run()
+   node.run().then(()=>{
+    events.emit("build", e, project)
+   })
 
-  var build = new Job("build-runner")
-
-  build.image = "python:3"
-
-  build.task = [
-      "echo Hello"
-  ]
-
-  Group.runEach([node, build])
-
-//   build.run()
+ 
 })
+
+events.on("build", () => {
+    console.log("fired 'next' event")
+
+    var build = new Job("build-runner")
+
+    build.image = "python:3"
+  
+    build.task = [
+        "echo Hello"
+    ]
+  
+    build.run()
+
+  })
