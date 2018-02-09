@@ -39,7 +39,7 @@ events.on("buidling", (e, project) => {
       "sleep 20",
       "cd /src",
       "docker build -t xvier/uuid:latest .",
-      "docker login -u $DOCKER_USER -p $DOCKER_PASS",
+      "docker login -u $DOCKER_USER -p $DOCKER_PASS registry.hub.docker.com",
       "docker push xvier/uuid:latest"
     ];
     
