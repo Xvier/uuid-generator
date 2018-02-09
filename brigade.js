@@ -49,5 +49,16 @@ events.on("buidling", (e, project) => {
         docker.task.push("ls")
     }
     
-    docker.run()
+    docker.run().then(()=>{
+        events.emit("deploying", e, project)
+    })
+
+  })
+
+  events.on("deploying", (e, project) => {
+    const deploy = new Job("deploy", "tettaji/kubectl:1.9.0")
+
+    deploy.task = [
+        "kubectl get pods"
+    ]
   })
